@@ -1,10 +1,8 @@
 package spp.tasksloggingapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import spp.tasksloggingapi.Exceptions.ResourceNotFoundException;
-import spp.tasksloggingapi.model.MainTask;
 import spp.tasksloggingapi.model.SubTask;
 import spp.tasksloggingapi.repository.SubTaskRepository;
 
@@ -57,7 +55,7 @@ public class SubTaskServiceImpl {
         subTaskRepository.deleteById(subTaskId);
     }
 
-    public List<SubTask> getSubTaskByName (String subTaskName) {
+    public List<SubTask> getSubTaskByName(String subTaskName) {
         return subTaskRepository.getSubTaskByName(subTaskName);
     }
 

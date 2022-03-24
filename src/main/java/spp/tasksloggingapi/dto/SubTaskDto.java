@@ -1,14 +1,16 @@
 package spp.tasksloggingapi.dto;
 
+import spp.tasksloggingapi.model.Person;
+
 import java.util.Objects;
 
 public class SubTaskDto {
 
     private String subTaskName;
-    private PersonDto subTaskAssignee;
+    private Person subTaskAssignee;
     private boolean isSubTaskComplete;
 
-    public SubTaskDto(String subTaskName, PersonDto subTaskAssignee, boolean isSubTaskComplete) {
+    public SubTaskDto(String subTaskName, Person subTaskAssignee, boolean isSubTaskComplete) {
         this.subTaskName = subTaskName;
         this.subTaskAssignee = subTaskAssignee;
         this.isSubTaskComplete = isSubTaskComplete;
@@ -22,11 +24,11 @@ public class SubTaskDto {
         this.subTaskName = subTaskName;
     }
 
-    public PersonDto getSubTaskAssignee() {
+    public Person getSubTaskAssignee() {
         return subTaskAssignee;
     }
 
-    public void setSubTaskAssignee(PersonDto subTaskAssignee) {
+    public void setSubTaskAssignee(Person subTaskAssignee) {
         this.subTaskAssignee = subTaskAssignee;
     }
 

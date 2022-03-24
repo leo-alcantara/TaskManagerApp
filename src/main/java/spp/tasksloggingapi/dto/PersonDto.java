@@ -1,5 +1,7 @@
 package spp.tasksloggingapi.dto;
 
+import spp.tasksloggingapi.model.MainTask;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -7,9 +9,9 @@ public class PersonDto {
 
     private String personName;
     private String personPhoneNumber;
-    private List<MainTaskDto> assignedTasks;
+    private List<MainTask> assignedTasks;
 
-    public PersonDto(String personName, String personPhoneNumber, List<MainTaskDto> assignedTasks) {
+    public PersonDto(String personName, String personPhoneNumber, List<MainTask> assignedTasks) {
         this.personName = personName;
         this.personPhoneNumber = personPhoneNumber;
         this.assignedTasks = assignedTasks;
@@ -31,11 +33,11 @@ public class PersonDto {
         this.personPhoneNumber = personPhoneNumber;
     }
 
-    public List<MainTaskDto> getAssignedTasks() {
+    public List<MainTask> getAssignedTasks() {
         return assignedTasks;
     }
 
-    public void setAssignedTasks(List<MainTaskDto> assignedTasks) {
+    public void setAssignedTasks(List<MainTask> assignedTasks) {
         this.assignedTasks = assignedTasks;
     }
 
