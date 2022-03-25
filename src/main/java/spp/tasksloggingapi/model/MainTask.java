@@ -15,9 +15,13 @@ public class MainTask {
     private Time timeSpentOnTask;
     private TaskGroups taskGroup;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
+            mappedBy = "mainTask")
     private List<SubTask> subTasks;
+
     private boolean isTaskComplete;
 
     @ManyToOne(cascade = {CascadeType.MERGE,
@@ -27,9 +31,7 @@ public class MainTask {
     @JoinColumn(name = "task_assignee_person_id")
     private Person taskAssignee;
 
-
     public MainTask() {
-
     }
 
     public MainTask(String mainTaskName, TaskGroups taskGroup,
@@ -83,7 +85,7 @@ public class MainTask {
     }
 
     public void setTaskComplete(boolean taskComplete) {
-        for (SubTask subTask: subTasks) {
+        for (SubTask subTask : subTasks) {
             this.isTaskComplete = subTask.isSubTaskComplete();
         }
     }

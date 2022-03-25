@@ -12,12 +12,13 @@ public interface MainTaskRepository extends JpaRepository<MainTask, Integer> {
     @Query("SELECT t FROM MainTask t WHERE UPPER(t.mainTaskName) LIKE UPPER(CONCAT('%', :mainTaskName, '%'))")
     List<MainTask> getMainTasksByName(@Param("mainTaskName") String mainTaskName);
 
-    @Query("SELECT t FROM MainTask t WHERE UPPER(t.taskGroup) LIKE UPPER(CONCAT('%', :taskGroup, '%'))")
+    @Query("SELECT t FROM MainTask t WHERE t.taskGroup = :taskGroup")
     List<MainTask> getMainTasksByTaskGroup(@Param("taskGroup") MainTask.TaskGroups taskGroup);
 
     @Query("SELECT t FROM MainTask t WHERE t.isTaskComplete = :status")
-    List<MainTask> getMainTasksByStatus(@Param("taskCompleted") boolean status);
+    List<MainTask> getMainTasksByStatus(@Param("status") boolean status);
 
-    @Query("SELECT t FROM MainTask t WHERE t.taskAssignee.personId = :assigneeId")
-    List<MainTask> getMainTasksByAssigneeId(@Param("assigneeId")Integer assigneeId);
+    @Query("SELECT t FROM MainTask t JOIN Person p ON t.taskAssignee.personId = p.personId " +
+            "WHERE t.taskAssignee.personId = :assigneeId")
+    List<MainTask> getMainTasksByAssigneeId(@Param("assigneeId") Integer assigneeId);
 }

@@ -63,7 +63,7 @@ public class MainTaskResource {
     }
 
     @RequestMapping(produces = "application/json", value = "/delete", method = RequestMethod.DELETE)
-    @ApiOperation(value = "Deletes Main Tasks Data Transfer Objects", response = MainTaskDto.class)
+    @ApiOperation(value = "Deletes Main Task Data Transfer Objects", response = MainTaskDto.class)
     public ResponseEntity<Void> deleteMainTaskById(@RequestBody Integer mainTaskId) {
         mainTaskService.deleteMainTaskById(mainTaskId);
         return ResponseEntity.ok().build();

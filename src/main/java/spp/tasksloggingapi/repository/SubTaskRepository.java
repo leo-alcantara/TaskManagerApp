@@ -10,9 +10,10 @@ import java.util.List;
 public interface SubTaskRepository extends JpaRepository<SubTask, Integer> {
 
     @Query("SELECT st FROM SubTask st WHERE UPPER(st.subTaskName) LIKE UPPER(CONCAT('%', :subTaskName, '%'))")
-    List<SubTask> getSubTaskByName (@Param("subTaskName") String subTaskName);
+    List<SubTask> getSubTaskByName(@Param("subTaskName") String subTaskName);
 
-    @Query("SELECT st FROM SubTask st WHERE st.subTaskAssignee.personId = :assigneeId")
+    @Query("SELECT st FROM SubTask st JOIN Person p ON st.subTaskAssignee.personId = p.personId " +
+            "WHERE st.subTaskAssignee.personId = :assigneeId")
     List<SubTask> getSubTaskByAssigneeId(@Param("assigneeId") Integer assigneeId);
 
     @Query("SELECT st FROM SubTask st WHERE st.isSubTaskComplete = :status")

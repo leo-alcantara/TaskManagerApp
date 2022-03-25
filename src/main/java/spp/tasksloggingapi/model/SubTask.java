@@ -17,14 +17,21 @@ public class SubTask {
             fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_task_assignee_person_id")
     private Person subTaskAssignee;
+    @ManyToOne(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "main_task_id")
+    private MainTask mainTask;
     private boolean isSubTaskComplete;
 
     public SubTask() {
     }
 
-    public SubTask(String subTaskName, Person subTaskAssignee, boolean isSubTaskComplete) {
+    public SubTask(String subTaskName, Person subTaskAssignee, MainTask mainTask, boolean isSubTaskComplete) {
         this.subTaskName = subTaskName;
         this.subTaskAssignee = subTaskAssignee;
+        this.mainTask = mainTask;
         this.isSubTaskComplete = isSubTaskComplete;
     }
 
@@ -46,6 +53,18 @@ public class SubTask {
 
     public void setSubTaskAssignee(Person subTaskAssignee) {
         this.subTaskAssignee = subTaskAssignee;
+    }
+
+    public void setSubTaskId(Integer subTaskId) {
+        this.subTaskId = subTaskId;
+    }
+
+    public MainTask getMainTask() {
+        return mainTask;
+    }
+
+    public void setMainTask(MainTask mainTask) {
+        this.mainTask = mainTask;
     }
 
     public boolean isSubTaskComplete() {

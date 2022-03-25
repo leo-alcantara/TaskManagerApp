@@ -42,12 +42,14 @@ public class DtoMapper {
     public SubTask toSubTask(SubTaskDto subTaskDto) {
         return new SubTask(subTaskDto.getSubTaskName(),
                 subTaskDto.getSubTaskAssignee(),
+                subTaskDto.getMainTask(),
                 subTaskDto.isSubTaskComplete());
     }
 
     public SubTaskDto toSubTaskDto(SubTask subTask) {
         return new SubTaskDto(subTask.getSubTaskName(),
                 subTask.getSubTaskAssignee(),
+                subTask.getMainTask(),
                 subTask.isSubTaskComplete());
     }
 }

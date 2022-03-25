@@ -2,6 +2,7 @@ package spp.tasksloggingapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spp.tasksloggingapi.Exceptions.ResourceNotFoundException;
 import spp.tasksloggingapi.model.Person;
 import spp.tasksloggingapi.repository.PersonRepository;
@@ -19,11 +20,13 @@ public class PersonServiceImpl {
         this.personRepository = personRepository;
     }
 
+    @Transactional
     public Person insertPerson(Person person) {
         personRepository.save(person);
         return person;
     }
 
+    @Transactional
     public Person getPersonById(Integer personId) {
         Optional<Person> foundPerson = personRepository.findById(personId);
 
@@ -34,10 +37,12 @@ public class PersonServiceImpl {
         }
     }
 
+    @Transactional
     public List<Person> getAllPeople() {
         return personRepository.findAll();
     }
 
+    @Transactional
     public Person updatePerson(Integer personToBeUpdatedId, Person personToUpdateTo) {
         Optional<Person> toBeUpdated = personRepository.findById(personToBeUpdatedId);
 
@@ -51,14 +56,17 @@ public class PersonServiceImpl {
         }
     }
 
+    @Transactional
     public void deletePersonById(Integer personId) {
         personRepository.deleteById(personId);
     }
 
+    @Transactional
     public List<Person> getPersonByName(String personName) {
         return personRepository.getPersonByName(personName);
     }
 
+    @Transactional
     public List<Person> getPersonByAssignedTaskName(String taskName) {
         return personRepository.getPersonByAssignedTaskName(taskName);
     }

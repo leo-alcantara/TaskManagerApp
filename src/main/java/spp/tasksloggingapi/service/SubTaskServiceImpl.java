@@ -2,6 +2,7 @@ package spp.tasksloggingapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spp.tasksloggingapi.Exceptions.ResourceNotFoundException;
 import spp.tasksloggingapi.model.SubTask;
 import spp.tasksloggingapi.repository.SubTaskRepository;
@@ -19,11 +20,13 @@ public class SubTaskServiceImpl {
         this.subTaskRepository = subTaskRepository;
     }
 
+    @Transactional
     public SubTask insertSubTask(SubTask subTask) {
         subTaskRepository.save(subTask);
         return subTask;
     }
 
+    @Transactional
     public SubTask getSubTaskById(Integer subTaskId) {
         Optional<SubTask> foundSubTask = subTaskRepository.findById(subTaskId);
 
@@ -34,10 +37,12 @@ public class SubTaskServiceImpl {
         }
     }
 
+    @Transactional
     public List<SubTask> getAllSubTasks() {
         return subTaskRepository.findAll();
     }
 
+    @Transactional
     public SubTask updateSubTask(Integer subTaskToBeUpdatedId, SubTask subTaskToUpdateTo) {
         Optional<SubTask> toBeUpdated = subTaskRepository.findById(subTaskToBeUpdatedId);
 
@@ -51,18 +56,22 @@ public class SubTaskServiceImpl {
         }
     }
 
+    @Transactional
     public void deleteSubTaskById(Integer subTaskId) {
         subTaskRepository.deleteById(subTaskId);
     }
 
+    @Transactional
     public List<SubTask> getSubTaskByName(String subTaskName) {
         return subTaskRepository.getSubTaskByName(subTaskName);
     }
 
+    @Transactional
     public List<SubTask> getSubTaskByAssigneeId(Integer assigneeId) {
         return subTaskRepository.getSubTaskByAssigneeId(assigneeId);
     }
 
+    @Transactional
     public List<SubTask> getSubTaskByStatus(boolean status) {
         return subTaskRepository.getSubTaskByStatus(status);
     }

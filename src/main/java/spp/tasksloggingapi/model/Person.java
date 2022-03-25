@@ -20,7 +20,6 @@ public class Person {
             mappedBy = "taskAssignee")
     private List<MainTask> assignedTasks;
 
-
     public Person(String personName, String personPhoneNumber, List<MainTask> assignedTasks) {
         this.personName = personName;
         this.personPhoneNumber = personPhoneNumber;
@@ -28,7 +27,6 @@ public class Person {
     }
 
     public Person() {
-
     }
 
     public Integer getPersonId() {

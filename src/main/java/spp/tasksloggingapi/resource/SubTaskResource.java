@@ -27,8 +27,8 @@ public class SubTaskResource {
         this.mapper = mapper;
     }
 
-    @RequestMapping(produces = "application/json", value = "/create", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns created Sub Task Data Transfer Object", response = Person.class)
+    @RequestMapping(produces = "application/json", value = "/create", method = RequestMethod.POST)
+    @ApiOperation(value = "Returns created Sub Task Data Transfer Object", response = SubTaskDto.class)
     public ResponseEntity<SubTaskDto> insertSubTask(@RequestBody SubTaskDto subTaskDto) {
         SubTask insertedSubTask = subTaskService.insertSubTask(mapper.toSubTask(subTaskDto));
         SubTaskDto insertedSubTaskDto = mapper.toSubTaskDto(insertedSubTask);
@@ -71,7 +71,7 @@ public class SubTaskResource {
     }
 
     @RequestMapping(produces = "application/json", value = "/getByName", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Object filtered by name", response = SubTaskDto.class)
+    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Objects filtered by name", response = SubTaskDto.class)
     public ResponseEntity<List<SubTaskDto>> getSubTaskByName(@RequestParam String subTaskName) {
         List<SubTask> tasksFilteredByName = subTaskService.getSubTaskByName(subTaskName);
         List<SubTaskDto> tasksFilteredByNameDto = tasksFilteredByName
@@ -82,7 +82,7 @@ public class SubTaskResource {
     }
 
     @RequestMapping(produces = "application/json", value = "/getByAssignee", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Object filtered by Assignee", response = SubTaskDto.class)
+    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Objects filtered by Assignee", response = SubTaskDto.class)
     public ResponseEntity<List<SubTaskDto>> getSubTaskByAssigneeId(@RequestParam Integer assigneeId) {
         List<SubTask> tasksFilteredByAssigneeId = subTaskService.getSubTaskByAssigneeId(assigneeId);
         List<SubTaskDto> tasksFilteredByAssigneeIdDto = tasksFilteredByAssigneeId
@@ -93,7 +93,7 @@ public class SubTaskResource {
     }
 
     @RequestMapping(produces = "application/json", value = "/getByStatus", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Object filtered by status", response = SubTaskDto.class)
+    @ApiOperation(value = "Returns All Sub Tasks Data Transfer Objects filtered by status", response = SubTaskDto.class)
     public ResponseEntity<List<SubTaskDto>> getSubTaskByStatus(@RequestParam boolean status) {
         List<SubTask> tasksFilteredByStatus = subTaskService.getSubTaskByStatus(status);
         List<SubTaskDto> tasksFilteredByStatusDto = tasksFilteredByStatus
